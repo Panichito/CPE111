@@ -8,12 +8,13 @@
  *  is connected.
  *
  *  Key values are strings and are copied when vertices are inserted into
- *  the graph. Every vertex has a void* pointer to additional data which
+ *  the graph. Every vertex has a void* pointer to ancillary data which
  *  is simply stored. 
  *
  *  Created by Sally Goldin, 18 January 2012 for CPE 113
- *  Revised to improve names 5 March 2013, 2 March 2017
- *  Revised to fix bug - removeEdge did not return bOk - 11 March 2019
+ *  Revised to improve names 5 March 2013
+ *  Revised to provide a solution for Lab 7, 15 March 2013
+ *  Revised to fix bug in removeEdge, 14 March 2020
  */
 
 #include <stdio.h>
@@ -29,7 +30,7 @@
 char* colorName[] = {"WHITE", "GRAY", "BLACK"};
 
 /* List items for the adjacency list.
- * Each one represents an edge leading to an existing vertex
+ * Each one is a reference to an existing vertex
  */
 typedef struct _adjVertex
 {
@@ -43,9 +44,10 @@ typedef struct _adjVertex
 typedef struct _vertex
 {
 	char * key;               /* key for this vertex */
-	void * data;              /* additional data for this vertex */
+	void * data;              /* ancillary data for this vertex */
 	int color;                /* used to mark nodes as visited */
 	struct _vertex * next;    /* next vertex in the list */
+	struct _vertex * pFrom;     /* what vertex did we arrive from? */
 	ADJACENT_T * adjacentHead;    /* pointer to the head of the
 								   * adjacent vertices list
 								   */
@@ -58,7 +60,9 @@ typedef struct _vertex
 VERTEX_T * vListHead = NULL;  /* head of the vertex list */
 VERTEX_T * vListTail = NULL;  /* tail of the vertex list */
 int bGraphDirected = 0;       /* if true, this is a directed graph */
-
+int vertexCount = 0;          /* keep track of the number of vertices */
+/* updated in addVertex and removeVertex */
+/* used in printPath */
 
 /** Private functions */
 
@@ -201,6 +205,7 @@ int countAdjacent(VERTEX_T * pVertex)
 /* Set all vertices to the passed color.
  * Argument
  *    A color constant
+ * 12 Mar 2015 Also set pFrom to NULL
  */
 void colorAll(int color)
 {
@@ -208,6 +213,7 @@ void colorAll(int color)
 	while (pVertex != NULL)
 	{
 		pVertex->color = color;
+		pVertex->pFrom = NULL;
 		pVertex = pVertex->next;
 	}
 }
@@ -376,7 +382,9 @@ int addVertex(char* key, void* pData)
 				vListTail->next = pNewVtx; 
 			}
 			vListTail = pNewVtx;
+			vertexCount++; /* SEG added 12 Mar 2015 */
 		}
+
 	}
 	return bOk;
 }
@@ -412,6 +420,7 @@ void* removeVertex(char* key)
 		free(pRemoveVtx->key);
 		pData = pRemoveVtx->data;
 		free(pRemoveVtx);
+		vertexCount--; /* SEG added 12 Mar 2015 */
 	} 
 	return pData;
 }
@@ -685,6 +694,17 @@ void printDepthFirst()
 	}
 }
 
+/**/
+
+/* No-op function allows us to traverse without
+ * doing anything other than setting colors
+ * Argument  
+ *   pVertex   -   vertex - will be ignored
+ */
+void emptyFunction(VERTEX_T* pVertex)
+{
+}
+
 
 /* Return information as to whether two vertices are
  * connected by a path.
@@ -694,4 +714,124 @@ void printDepthFirst()
  * Returns 1 if the two vertices are connected, 0 if they
  * are not. Returns -1 if either vertex does not exist.
  */
-int isReachable(char* key1, char* key2);
+int isReachable(char* key1, char* key2)
+{
+	int retval = 1;
+	VERTEX_T * pDummy = NULL;
+	VERTEX_T * pStartVertex = findVertexByKey(key1,&pDummy);
+	VERTEX_T * pEndVertex = findVertexByKey(key2,&pDummy);
+	if ((pStartVertex == NULL) || (pEndVertex == NULL))
+	{
+		retval = -1;
+	}
+	else
+	{
+		traverseBreadthFirst(pStartVertex,&emptyFunction);
+		/* if after a breadth first traversal, we didn't reach the 
+		 * the end vertex, it is not reachable.
+		 */
+		if (pEndVertex->color != BLACK)
+			retval = 0;
+
+	}
+	return retval;
+
+}
+
+/* Print path to the end vertex passed as the argument.
+ * This is called after doing a breadth-first search, which
+ * will set the pFrom pointer on each vertex. To print
+ * the path in the correct order, we put the items into
+ * an array then read from the end.
+ * Arguments
+ *    pEndVertex - end point of path we want to print. 
+ */
+void printPath(VERTEX_T* pEndVertex)
+{
+	VERTEX_T** pathVertices = calloc(vertexCount,sizeof(VERTEX_T*));
+	/* this array is big enough to hold all the vertices we have */
+	int pathCount = 0;
+	if (pathVertices == NULL) 
+	{
+		printf("Allocation error in printPath!\n");
+	}
+	else
+	{
+		int i = 0;
+		VERTEX_T * pCurrent = pEndVertex;
+		while (pCurrent != NULL)  /* traverse the pFrom links */
+		{
+			pathVertices[pathCount] = pCurrent;
+			pathCount++;
+			pCurrent = pCurrent->pFrom;
+		}
+		/* Now start at the end of the array to print the path */
+		for (i = pathCount-1; i >= 0; i--)
+		{
+			printf(" %s ",pathVertices[i]->key);
+			if (i > 0)
+				printf("==>");
+		} 
+		printf("\n");
+		free(pathVertices);
+	}
+}
+
+/* Return information as to whether two vertices are
+ * connected by a path. Also print the path if it
+ * exists. We do this by keeping track of source vertices
+ * as we do the breadth first traversal.
+ * Arguments
+ *    key1 -  Key for the start vertex 
+ *    key2 -  Key for the second vertex to check 
+ * Returns 1 if the two vertices are connected, 0 if they
+ * are not. Returns -1 if either vertex does not exist.
+ */
+int isReachablePrintPath(char* key1, char* key2)
+{
+	int retval = 1;
+	VERTEX_T * pDummy = NULL;
+	VERTEX_T * pAdjacent = NULL;
+	VERTEX_T * pStartVertex = findVertexByKey(key1,&pDummy);
+	VERTEX_T * pEndVertex = findVertexByKey(key2,&pDummy);
+	if ((pStartVertex == NULL) || (pEndVertex == NULL))
+	{
+		retval = -1;
+	}
+	else
+	{
+		queueClear();
+		colorAll(WHITE);
+		enqueue(pStartVertex);
+		while (queueSize() > 0)
+		{
+			VERTEX_T* pCurrent = (VERTEX_T*) dequeue();
+			if (pCurrent->color != BLACK)
+			{
+				pCurrent->color = BLACK;
+				ADJACENT_T* pRef = pCurrent->adjacentHead;
+				while (pRef != NULL)
+				{
+					pAdjacent = (VERTEX_T*) pRef->pVertex;
+					if (pAdjacent->color != BLACK)
+					{
+						pAdjacent->pFrom = pCurrent;
+						enqueue(pAdjacent);
+					}
+					pRef = pRef->next;
+				}
+			}
+		} /* end while queue has data */
+		if (pEndVertex->color != BLACK)
+		{ 
+			retval = 0; 
+		} 
+		else
+		{
+			printf("Path from %s to %s:\n",pStartVertex->key,pEndVertex->key); 
+			printPath(pEndVertex);
+		}
+	}
+	return retval;
+
+}
