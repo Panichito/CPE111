@@ -11,18 +11,18 @@ else
 	PLATFORM	=linux
 endif
 
-EXECUTABLES= heapTester$(EXECEXT) 
+EXECUTABLES= emergency$(EXECEXT) 
 
 all : $(EXECUTABLES)
 
-heapTester.o :	heapTester.c abstractHeap.h
-	gcc -c heapTester.c
+emergency.o :	emergency.c abstractHeap.h
+	gcc -c emergency.c
 
 arrayHeap.o :	arrayHeap.c abstractHeap.h
 	gcc -c arrayHeap.c
 
-heapTester$(EXECEXT) : heapTester.o arrayHeap.o 
-	gcc -o heapTester$(EXECEXT) heapTester.o arrayHeap.o 
+emergency$(EXECEXT) : emergency.o arrayHeap.o 
+	gcc -o emergency$(EXECEXT) emergency.o arrayHeap.o 
 
 clean : 
 	-rm *.o
