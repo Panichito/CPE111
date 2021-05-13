@@ -1,0 +1,51 @@
+bakery:Store that sells baked goods such as cakes and pastries
+doctor:Medical professional
+anxious:Nervous, concerned or fearful about something
+beautiful:Attractive or physically appealing
+bottle:Container for liquids made of glass or plastic
+popular:Liked or desired by many people in society
+zebra:Mammal similar to a horse with a black and white striped coat
+queen:Female ruler of a monarchy; wife of a king
+paint:To spread color on a surface
+bank:Organization that holds and invests money for its customers
+cake:Type of sweet made of flour, eggs, and sugar, often covered with frosting
+joke:Humorous story or action
+soil:Dirt or earth
+jail:Building used to house people convicted of crimes; prison
+zoo:Place where wild animals are kept and presented for viewing by visitors
+yak:Long haired mammal similar to an ox found in Himalayan countries
+mocha:Type of drink mixing coffee and chocolate
+afternoon:The time between 12:00 and 17:00 
+hat:Item of clothing worn on the head for protection, warmth or fashion
+table:Type of furniture, usually with four legs, used for working, eating, etc.
+umbrella:Device which unfolds into a canopy to protect someone from rain or sun
+gold:Element Au, number 79 in the periodic table, often used for money or jewelry
+giant:Very large or massive
+safety:State of being secure and not in danger
+lady:Adult female human (polite)
+cat:Mammal of the genus felis commonly kept as a pet
+watch:To look at something for a period of time
+rabbit:Small mammal of order Rodentia, characterized by large ears and very soft fur
+sea:Body of salt water; ocean
+fake:Copied or not real
+teacher:Person who helps students gain knowledge, information or skill
+garage:Building for storing motor vehicles
+giant:Legendary creature with a very large body, often viewed as evil
+ant:Type of insect that lives in colonies 
+watch:Device used to tell time
+lock:To secure a door so that it can only be opened using a key or combination
+suit:Set of matching clothing, often consisting of jacket and trousers or jacket and skirt
+jewel:Stone or mineral with high value, often shiny or sparkling
+kick:To strike someone with one's foot
+paint:To create a work of art using colors applied with a brush
+apple:Kind of fruit that grows on trees, with a smooth skin and crisp interior
+wacky:Silly or crazy
+cherry:Kind of fruit that grows on trees, usually red and very sweet with a seed in the middle
+food:Something that is eaten for purposes of taste or nutrition
+poker:One of several types of card games involving betting
+young:The opposite of old
+heart:Organ responsible for circulating blood 
+lime:Kind of citrus fruit that grows on trees, with green nubby skin and sour taste
+rot:To spoil or decompose
+lake:Body of fresh water
+
