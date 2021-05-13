@@ -1,0 +1,31 @@
+maryMe Mary Anderson 11-08-2001
+babydoll Linda Smith 14-09-1997
+roberta1 Roberta Ho 08-08-1988
+sasparilla Suzy Sommers 17-07-2003
+chaosrules Mark Marshall 16-04-1978
+cathy Catherine Holmes 05-11-2005
+ricky Richard Masterson 30-07-2000
+ricky2 Rick Rogers 18-10-2000
+arnie Arnold Schwartznegger 01-02-1964
+joe Joseph Howard 13-05-1999
+lottie Charlotte Smith 14-09-2007
+babalu Sidney Carter 01-12-2001
+huggybear Jenny Jones 03-09-1977
+abby123 Abigail Jackson 17-07-2000
+rogerRabbit Roger Rabbit 09-07-1955
+roberta2 Roberta Henderson 11-11-2000
+FRIEND maryMe roberta1
+FRIEND sasparilla chaosrules
+FRIEND chaosrules huggybear
+FRIEND huggybear cathy
+FRIEND cathy maryMe
+FRIEND arnie babalu
+FRIEND babydoll sasparilla
+FRIEND rogerRabbit cathy
+FRIEND roberta2 babalu
+FRIEND chaosrules abby123
+FRIEND huggybear chaosrules
+FRIEND arnie ricky
+FRIEND huggybear abby123
+FRIEND sasparilla babalu
+FRIEND ricky roberta2
