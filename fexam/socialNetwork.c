@@ -8,7 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#define BUCKET 503
+#include "linkedListUtil.h"
 
 typedef struct _person
 {
@@ -17,7 +17,7 @@ typedef struct _person
 	char lastname[64];
 	char date[32];
 
-	struct _person *friend[BUCKET];
+	LIST_HANDLE *friend;
 	struct _person *left;
 	struct _person *right;
 } PEOPLE_T;
@@ -46,23 +46,18 @@ PEOPLE_T* findUser(char *username, PEOPLE_T* root)
 void makeFriend(PEOPLE_T* f1, PEOPLE_T* f2)
 {
 	/* too make it short - f stand for friend */
-	for(int i = 0; i < BUCKET; ++i) 
-	{
-		if(f1->friend[i] == NULL)
-		{
-			f1->friend[i] = f2;
-			break;
-		}
+	if(f1->friend == NULL) {
+		f1->friend = newList();
 	}
-	for(int i = 0; i < BUCKET; ++i) 
-	{
-		if(f2->friend[i] == NULL)
-		{
-			f2->friend[i] = f1;
-			break;
-		}
+	if(f2->friend == NULL) {
+		f2->friend = newList();
 	}
-	printf("\t'%s' and '%s' is now friends\n", f1->username, f2->username);
+	if(listInsertEnd(f1->friend, f2) && listInsertEnd(f2->friend, f1)) {
+		printf("\t'%s' and '%s' is now friends\n", f1->username, f2->username);
+	}
+	else {
+		printf("Linked list error!\n");
+	}
 }
 
 void insertNode(PEOPLE_T* root, PEOPLE_T* person)
@@ -236,11 +231,21 @@ void createNewUser(PEOPLE_T* root)
 
 int isFriend(PEOPLE_T* person1, PEOPLE_T* person2)
 {
-	for(int i = 0; i < BUCKET && person1->friend[i] != NULL; ++i) 
+	LIST_HANDLE list = NULL;
+	list = person1->friend;
+	if(list == NULL)
 	{
-		if(strcmp(person2->username, person1->friend[i]->username) == 0)
+		printf("\tNo friends for '%s'\n", person1->username);
+	}
+	else 
+	{
+		listReset(list);
+		person1 = listGetNext(list);
+		while(person1 != NULL)
 		{
-			return 1;
+			if(strcmp(person1->username, person2->username) == 0)
+				return 1;
+			person1 = listGetNext(list);
 		}
 	}
 	return 0;
@@ -249,11 +254,16 @@ int isFriend(PEOPLE_T* person1, PEOPLE_T* person2)
 void printAllFriend(char* name, PEOPLE_T* root, int *count)
 {
 	PEOPLE_T* find = findUser(name, root);
-	for(int i = 0; i < BUCKET && find->friend[i] != NULL; ++i) 
-	{
-		if(strcmp(name, find->friend[i]->username) != 0)
-		{
-			printf("\t%s %s (%s) - Brithday %s\n", find->friend[i]->firstname, find->friend[i]->lastname, find->friend[i]->username, find->friend[i]->date);
+	LIST_HANDLE list = find->friend;
+	if(list == NULL) {
+		printf("\tNo friends for '%s'\n", find->username);
+	}
+	else {
+		listReset(list);
+		find = listGetNext(list);
+		while(find != NULL) {
+			printf("\t%s %s (%s) - Brithday %s\n", find->firstname, find->lastname, find->username, find->date);
+			find = listGetNext(list);
 			*count = *count + 1;  /* count for printing  format */
 		}
 	}
@@ -262,22 +272,33 @@ void printAllFriend(char* name, PEOPLE_T* root, int *count)
 void suggestFriend(char* name, PEOPLE_T* root)
 {
 	PEOPLE_T* find = findUser(name, root);
-	for(int i = 0; i < BUCKET && find->friend[i] != NULL; ++i) 
-	{
-		if(strcmp(name, find->friend[i]->username) != 0)
-		{
-			printf("\tFriend of '%s' whom you might like:\n", find->friend[i]->username);
-			for(int j = 0; j < BUCKET && find->friend[i]->friend[j] != NULL; ++j)
+	LIST_HANDLE list = find->friend;
+	if(list == NULL) {
+		printf("\tNo friends for '%s'\n", find->username);
+	}
+	else {
+		listReset(list);
+		find = listGetNext(list);
+		while(find != NULL) {
+			int count = 0;
+			PEOPLE_T* check = findUser(find->username, root);
+			LIST_HANDLE listChk = check->friend;
+			listReset(listChk);
+			check = listGetNext(listChk);
+
+			printf("\tFriend of '%s' whom you might like:\n", find->username);
+			while(check != NULL)
 			{
-				if(strcmp(name, find->friend[i]->friend[j]->username) != 0)          
-				{
-					PEOPLE_T* check = findUser(find->friend[i]->friend[j]->username, root);
-					if(!isFriend(find, check))
-					{
-						printf("\t\t%s %s (%s) - Brithday %s\n", find->friend[i]->friend[j]->firstname, find->friend[i]->friend[j]->lastname, find->friend[i]->friend[j]->username, find->friend[i]->friend[j]->date);
-					}
+				if(strcmp(name, check->username) != 0 && !isFriend(check, findUser(name, root))) {
+					printf("\t\t%s %s (%s) - Brithday %s\n", check->firstname, check->lastname, check->username, check->date);
+					++count;
 				}
+				check = listGetNext(listChk);
 			}
+			if(!count) {
+				printf("\t\tNo friends suggestion\n");
+			}
+			find = listGetNext(list);
 		}
 	}
 }
