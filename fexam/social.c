@@ -266,6 +266,7 @@ void suggestFriend(char* name, PEOPLE_T* root)
 	{
 		if(strcmp(name, find->friend[i]->username) != 0)
 		{
+			int count = 0;
 			printf("\tFriend of '%s' whom you might like:\n", find->friend[i]->username);
 			for(int j = 0; j < BUCKET && find->friend[i]->friend[j] != NULL; ++j)
 			{
@@ -275,9 +276,12 @@ void suggestFriend(char* name, PEOPLE_T* root)
 					if(!isFriend(find, check))
 					{
 						printf("\t\t%s %s (%s) - Brithday %s\n", find->friend[i]->friend[j]->firstname, find->friend[i]->friend[j]->lastname, find->friend[i]->friend[j]->username, find->friend[i]->friend[j]->date);
+						++count;
 					}
 				}
 			}
+			if(count == 0)
+				printf("\t\tNo any friends to sugguest\n");
 		}
 	}
 }
