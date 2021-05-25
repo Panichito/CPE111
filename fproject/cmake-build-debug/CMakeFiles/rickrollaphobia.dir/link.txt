@@ -1,0 +1,1 @@
+/usr/bin/cc -g CMakeFiles/rickrollaphobia.dir/inputReader.c.o CMakeFiles/rickrollaphobia.dir/commandFunctions.c.o CMakeFiles/rickrollaphobia.dir/colorFunctions.c.o CMakeFiles/rickrollaphobia.dir/utility.c.o CMakeFiles/rickrollaphobia.dir/arrayQueue.c.o CMakeFiles/rickrollaphobia.dir/linkedListUtilMod.c.o -o rickrollaphobia 

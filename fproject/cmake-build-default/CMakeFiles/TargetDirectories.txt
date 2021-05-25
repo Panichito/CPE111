@@ -1,0 +1,3 @@
+/mnt/d/C/rickrollaphobia/cmake-build-default/CMakeFiles/rebuild_cache.dir
+/mnt/d/C/rickrollaphobia/cmake-build-default/CMakeFiles/edit_cache.dir
+/mnt/d/C/rickrollaphobia/cmake-build-default/CMakeFiles/yes.dir

@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="rickrollaphobia"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/mnt/d/C/rickrollaphobia/cmake-build-default"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/mnt/d/C/rickrollaphobia/cmake-build-default/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/mnt/d/C/rickrollaphobia/cmake-build-default/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/mnt/d/C/rickrollaphobia/cmake-build-default/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/mnt/d/C/rickrollaphobia/cmake-build-default/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/mnt/d/C/rickrollaphobia/cmake-build-default"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/mnt/d/C/rickrollaphobia/cmake-build-default/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/mnt/d/C/rickrollaphobia/cmake-build-default/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/mnt/d/C/rickrollaphobia/cmake-build-default/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/mnt/d/C/rickrollaphobia/cmake-build-default/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/mnt/d/C/rickrollaphobia/cmake-build-default"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/mnt/d/C/rickrollaphobia/cmake-build-default/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/mnt/d/C/rickrollaphobia/cmake-build-default/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/mnt/d/C/rickrollaphobia/cmake-build-default/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/mnt/d/C/rickrollaphobia/cmake-build-default/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="yes">
+				<Option output="/mnt/d/C/rickrollaphobia/cmake-build-default/yes" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/d/C/rickrollaphobia/cmake-build-default"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/mnt/d/C/rickrollaphobia/cmake-build-default/Makefile&quot;  VERBOSE=1 yes"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/mnt/d/C/rickrollaphobia/cmake-build-default/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/mnt/d/C/rickrollaphobia/cmake-build-default/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/mnt/d/C/rickrollaphobia/cmake-build-default/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="yes/fast">
+				<Option output="/mnt/d/C/rickrollaphobia/cmake-build-default/yes" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/mnt/d/C/rickrollaphobia/cmake-build-default"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-linux-gnu/9/include"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/usr/include/x86_64-linux-gnu"/>
+					<Add directory="/usr/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j16 -f &quot;/mnt/d/C/rickrollaphobia/cmake-build-default/Makefile&quot;  VERBOSE=1 yes/fast"/>
+					<CompileFile command="/usr/bin/make -j16 -f &quot;/mnt/d/C/rickrollaphobia/cmake-build-default/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j16 -f &quot;/mnt/d/C/rickrollaphobia/cmake-build-default/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j16 -f &quot;/mnt/d/C/rickrollaphobia/cmake-build-default/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/mnt/d/C/rickrollaphobia/abstractQueueMod.h">
+			<Option target="yes"/>
+		</Unit>
+		<Unit filename="/mnt/d/C/rickrollaphobia/cmdColorEditor.c">
+			<Option target="yes"/>
+		</Unit>
+		<Unit filename="/mnt/d/C/rickrollaphobia/cmdGraphicEditor.c">
+			<Option target="yes"/>
+		</Unit>
+		<Unit filename="/mnt/d/C/rickrollaphobia/colorFunctions.c">
+			<Option target="yes"/>
+		</Unit>
+		<Unit filename="/mnt/d/C/rickrollaphobia/colorFunctions.h">
+			<Option target="yes"/>
+		</Unit>
+		<Unit filename="/mnt/d/C/rickrollaphobia/commandFunctions.c">
+			<Option target="yes"/>
+		</Unit>
+		<Unit filename="/mnt/d/C/rickrollaphobia/commandFunctions.h">
+			<Option target="yes"/>
+		</Unit>
+		<Unit filename="/mnt/d/C/rickrollaphobia/drawImage.c">
+			<Option target="yes"/>
+		</Unit>
+		<Unit filename="/mnt/d/C/rickrollaphobia/drawImage.h">
+			<Option target="yes"/>
+		</Unit>
+		<Unit filename="/mnt/d/C/rickrollaphobia/helpMenu.c">
+			<Option target="yes"/>
+		</Unit>
+		<Unit filename="/mnt/d/C/rickrollaphobia/helpMenu.h">
+			<Option target="yes"/>
+		</Unit>
+		<Unit filename="/mnt/d/C/rickrollaphobia/linkedListQueueMod.c">
+			<Option target="yes"/>
+		</Unit>
+		<Unit filename="/mnt/d/C/rickrollaphobia/linkedListUtilMod.c">
+			<Option target="yes"/>
+		</Unit>
+		<Unit filename="/mnt/d/C/rickrollaphobia/linkedListUtilMod.h">
+			<Option target="yes"/>
+		</Unit>
+		<Unit filename="/mnt/d/C/rickrollaphobia/utility.c">
+			<Option target="yes"/>
+		</Unit>
+		<Unit filename="/mnt/d/C/rickrollaphobia/utility.h">
+			<Option target="yes"/>
+		</Unit>
+		<Unit filename="/mnt/d/C/rickrollaphobia/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
